@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BookDash | Anasayfa</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <!-- Ionicons -->
+    <link
+      rel="stylesheet"
+      href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+    />
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tempusdominus-bootstrap-4@5.39.0/build/css/tempusdominus-bootstrap-4.min.css"
+    />
+    <!-- iCheck -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/icheck-bootstrap/3.0.1/icheck-bootstrap.min.css"
+    />
+    <!-- JQVMap -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jqvmap.min.css"
+    />
+    <!-- DataTables -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.bootstrap4.min.css"
+    />
+    <!-- Theme style -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css"
+    />
+    <!-- overlayScrollbars -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.0/css/OverlayScrollbars.min.css"
+    />
+    <!-- SweetAlert2 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css"
+    />
+    <!-- Custom style -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+      <!-- Navbar -->
+      <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"
+              ><i class="fas fa-bars"></i
+            ></a>
+          </li>
+        </ul>
+
+        <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+              <i class="fas fa-expand-arrows-alt"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" role="button" id="logoutBtn">
+              <i class="fas fa-sign-out-alt"></i> Çıkış
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.navbar -->
+
+      <!-- Main Sidebar Container -->
+      <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="dashboard.html" class="brand-link">
+          <img
+            src="./assets/img/bookdash-logo.svg"
+            alt="BookDash Logo"
+            class="brand-image elevation-3"
+            style="opacity: 0.8"
+          />
+          <span class="brand-text font-weight-light">Book<b>Dash</b></span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+          <!-- Sidebar user panel (optional) -->
+          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+                class="img-circle elevation-2"
+                alt="User Image"
+              />
+            </div>
+            <div class="info">
+              <a href="#" class="d-block" id="userFullName">Kullanıcı Adı</a>
+            </div>
+          </div>
+
+          <!-- Sidebar Menu -->
+          <nav class="mt-2">
+            <ul
+              class="nav nav-pills nav-sidebar flex-column"
+              data-widget="treeview"
+              role="menu"
+              data-accordion="false"
+            >
+              <li class="nav-item">
+                <a href="dashboard.html" class="nav-link active navigate-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>Dashboard</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/my-books.html" class="nav-link navigate-link">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>Kitaplarım</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/charts.html" class="nav-link navigate-link">
+                  <i class="nav-icon fas fa-chart-pie"></i>
+                  <p>Grafikler</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/settings.html" class="nav-link navigate-link">
+                  <i class="nav-icon fas fa-cog"></i>
+                  <p>Ayarlar</p>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+      </aside>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1 class="m-0">Dashboard</h1>
+              </div>
+              <!-- /.col -->
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item"><a href="#">Ana Sayfa</a></li>
+                  <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          </div>
+          <!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                  <div class="inner">
+                    <h3 id="totalBooks">25</h3>
+                    <p>Toplam Kitap</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fas fa-book"></i>
+                  </div>
+                  <a
+                    href="pages/my-books.html"
+                    class="small-box-footer navigate-link"
+                    >Daha fazla bilgi <i class="fas fa-arrow-circle-right"></i
+                  ></a>
+                </div>
+              </div>
+              <!-- ./col -->
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                  <div class="inner">
+                    <h3 id="averageReadingDays">8<sup>gün</sup></h3>
+                    <p>Ortalama Okuma Süresi</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fas fa-clock"></i>
+                  </div>
+                  <a
+                    href="pages/charts.html"
+                    class="small-box-footer navigate-link"
+                    >Daha fazla bilgi <i class="fas fa-arrow-circle-right"></i
+                  ></a>
+                </div>
+              </div>
+              <!-- ./col -->
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                  <div class="inner">
+                    <h3 id="currentMonth">3</h3>
+                    <p>Bu Ay Okunanlar</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fas fa-calendar-alt"></i>
+                  </div>
+                  <a
+                    href="pages/charts.html"
+                    class="small-box-footer navigate-link"
+                    >Daha fazla bilgi <i class="fas fa-arrow-circle-right"></i
+                  ></a>
+                </div>
+              </div>
+              <!-- ./col -->
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-danger">
+                  <div class="inner">
+                    <h3 id="favoriteGenre">Roman</h3>
+                    <p>Favori Tür</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fas fa-heart"></i>
+                  </div>
+                  <a
+                    href="pages/charts.html"
+                    class="small-box-footer navigate-link"
+                    >Daha fazla bilgi <i class="fas fa-arrow-circle-right"></i
+                  ></a>
+                </div>
+              </div>
+              <!-- ./col -->
+            </div>
+            <!-- /.row -->
+
+            <!-- Main row -->
+            <div class="row">
+              <!-- Left col -->
+              <section class="col-lg-7 connectedSortable">
+                <!-- Custom tabs (Charts with tabs)-->
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">
+                      <i class="fas fa-chart-bar mr-1"></i>
+                      Aylık Okuma İstatistikleri
+                    </h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <div class="chart">
+                      <div id="monthlyReadingChart" style="height: 300px"></div>
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+                <!-- Table with latest books -->
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Son Eklenen Kitaplar</h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table
+                        id="latestBooksTable"
+                        class="table table-bordered table-hover"
+                      >
+                        <thead>
+                          <tr>
+                            <th>Kitap Adı</th>
+                            <th>Yazar</th>
+                            <th>Bitiş Tarihi</th>
+                            <th>Süre</th>
+                            <th>Tür</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- Table data will be loaded dynamically -->
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </section>
+              <!-- /.Left col -->
+
+              <!-- right col (We are only adding the ID to make the widgets sortable)-->
+              <section class="col-lg-5 connectedSortable">
+                <!-- Pie chart -->
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">
+                      <i class="fas fa-chart-pie mr-1"></i>
+                      Kitap Türlerine Göre Dağılım
+                    </h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <div
+                      id="genreDistributionChart"
+                      style="height: 300px"
+                    ></div>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+                <!-- Quick add book card -->
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Hızlı Kitap Ekle</h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <form id="quickAddBookForm">
+                      <div class="form-group">
+                        <label for="bookTitle">Kitap Adı</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="bookTitle"
+                          placeholder="Kitap adını girin"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="bookAuthor">Yazar</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="bookAuthor"
+                          placeholder="Yazarın adını girin"
+                          required
+                        />
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="bookGenre">Tür</label>
+                            <select
+                              class="form-control"
+                              id="bookGenre"
+                              required
+                            >
+                              <option value="">Seçiniz</option>
+                              <option value="Roman">Roman</option>
+                              <option value="Bilimkurgu">Bilimkurgu</option>
+                              <option value="Klasik">Klasik</option>
+                              <option value="Distopya">Distopya</option>
+                              <option value="Fantastik">Fantastik</option>
+                              <option value="Tarih">Tarih</option>
+                              <option value="Biyografi">Biyografi</option>
+                              <option value="Kişisel Gelişim">
+                                Kişisel Gelişim
+                              </option>
+                              <option value="Diğer">Diğer</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="readingDays">Okuma Süresi (Gün)</label>
+                            <input
+                              type="number"
+                              class="form-control"
+                              id="readingDays"
+                              min="1"
+                              placeholder="Gün sayısı"
+                              required
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary">
+                        Kitap Ekle
+                      </button>
+                    </form>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </section>
+              <!-- right col -->
+            </div>
+            <!-- /.row (main row) -->
+          </div>
+          <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+      </div>
+      <!-- /.content-wrapper -->
+
+      <footer class="main-footer">
+        <strong>Copyright &copy; 2023-2025 <a href="#">BookDash</a>.</strong>
+        Tüm hakları saklıdır.
+        <div class="float-right d-none d-sm-inline-block">
+          <b>Sürüm</b> 1.0.0
+        </div>
+      </footer>
+
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+      </aside>
+      <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- Add Book Modal -->
+    <div class="modal fade" id="addBookModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Yeni Kitap Ekle</h4>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="addBookForm">
+              <div class="form-group">
+                <label for="modalBookTitle">Kitap Adı</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="modalBookTitle"
+                  placeholder="Kitap adını girin"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="modalBookAuthor">Yazar</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="modalBookAuthor"
+                  placeholder="Yazarın adını girin"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="modalStartDate">Başlama Tarihi</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="modalStartDate"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="modalEndDate">Bitiş Tarihi</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="modalEndDate"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="modalBookGenre">Tür</label>
+                <select class="form-control" id="modalBookGenre" required>
+                  <option value="">Seçiniz</option>
+                  <option value="Roman">Roman</option>
+                  <option value="Bilimkurgu">Bilimkurgu</option>
+                  <option value="Klasik">Klasik</option>
+                  <option value="Distopya">Distopya</option>
+                  <option value="Fantastik">Fantastik</option>
+                  <option value="Tarih">Tarih</option>
+                  <option value="Biyografi">Biyografi</option>
+                  <option value="Kişisel Gelişim">Kişisel Gelişim</option>
+                  <option value="Diğer">Diğer</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="modalNotes">Notlar</label>
+                <textarea
+                  class="form-control"
+                  id="modalNotes"
+                  rows="3"
+                  placeholder="Kitap hakkında notlar ekleyebilirsiniz"
+                ></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              Kapat
+            </button>
+            <button type="button" class="btn btn-primary" id="saveBookBtn">
+              Kaydet
+            </button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+      $.widget.bridge("uibutton", $.ui.button);
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
+    <!-- ECharts -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js"></script>
+    <!-- ChartJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
+    <!-- JQVMap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jquery.vmap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Knob/1.2.13/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.0/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
+    <!-- Session Helper -->
+    <script src="./assets/js/session-helper.js"></script>
+    <script>
+      // Sayfa içeriği yüklenmeden oturumu kontrol et
+      if (!redirectIfNoSession(false)) {
+        // Eğer yönlendirme yapılacaksa, sayfanın geri kalanının yüklenmesini engelle
+        document.documentElement.style.display = "none";
+      }
+    </script>
+    <!-- Base Script -->
+    <script src="./assets/js/base.js"></script>
+    <!-- Custom Script -->
+    <script src="./assets/js/dashboard.js"></script>
+  </body>
+</html>
