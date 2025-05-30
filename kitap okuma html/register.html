@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BookDash | Kayıt</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <!-- icheck bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/icheck-bootstrap/3.0.1/icheck-bootstrap.min.css"
+    />
+    <!-- Theme style -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css"
+    />
+    <!-- SweetAlert2 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css"
+    />
+    <!-- Custom style -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body class="hold-transition register-page">
+    <div class="register-box">
+      <div class="card card-outline card-primary">
+        <div class="card-header text-center">
+          <div class="h1">
+            <img
+              src="./assets/img/bookdash-logo.svg"
+              alt="BookDash Logo"
+              class="brand-image"
+              style="max-height: 60px"
+            />
+            <span class="brand-text font-weight-light">Book<b>Dash</b></span>
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="login-box-msg">Yeni bir hesap oluşturun</p>
+
+          <form id="registerForm" action="#" method="post">
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="fullName"
+                placeholder="Ad Soyad"
+                required
+              />
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-user"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="E-posta"
+                required
+              />
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-envelope"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="Şifre"
+                required
+                minlength="6"
+              />
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-lock"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input
+                type="password"
+                class="form-control"
+                id="confirmPassword"
+                placeholder="Şifreyi tekrar girin"
+                required
+                minlength="6"
+              />
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-lock"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="date" class="form-control" id="birthDate" required />
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-calendar"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <select class="form-control" id="gender" required>
+                <option value="" selected disabled>Cinsiyet Seçin</option>
+                <option value="male">Erkek</option>
+                <option value="female">Kadın</option>
+                <option value="other">Diğer</option>
+              </select>
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-venus-mars"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <select class="form-control" id="userType" required>
+                <option value="" selected disabled>Kullanıcı Tipi Seçin</option>
+                <option value="student">Öğrenci</option>
+                <option value="teacher">Öğretmen</option>
+                <option value="individual">Bireysel</option>
+              </select>
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-user-tag"></span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-8">
+                <div class="icheck-primary">
+                  <input
+                    type="checkbox"
+                    id="agreeTerms"
+                    name="terms"
+                    value="agree"
+                    required
+                  />
+                  <label for="agreeTerms">
+                    <a href="#">Şartları</a> kabul ediyorum
+                  </label>
+                </div>
+              </div>
+              <!-- /.col -->
+              <div class="col-4">
+                <button type="submit" class="btn btn-primary btn-block">
+                  Kayıt Ol
+                </button>
+              </div>
+              <!-- /.col -->
+            </div>
+          </form>
+
+          <a href="index.html" class="text-center">Zaten bir hesabım var</a>
+        </div>
+        <!-- /.form-box -->
+      </div>
+      <!-- /.card -->
+    </div>
+    <!-- /.register-box -->
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
+    <!-- Session Helper -->
+    <script src="./assets/js/session-helper.js"></script>
+    <!-- Base Script -->
+    <script src="./assets/js/base.js"></script>
+    <!-- Custom Script -->
+    <script src="./assets/js/register.js"></script>
+  </body>
+</html>

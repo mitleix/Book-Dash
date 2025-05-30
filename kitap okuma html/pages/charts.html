@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BookDash | Grafikler</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <!-- Theme style -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css"
+    />
+    <!-- SweetAlert2 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css"
+    />
+    <script src="../assets/js/session-helper.js"></script>
+    <script>
+      // Sayfa içeriği yüklenmeden oturumu kontrol et
+      if (!redirectIfNoSession(true)) {
+        // Eğer yönlendirme yapılacaksa, sayfanın geri kalanının yüklenmesini engelle
+        // Bu, kısa süreli sayfa görünümünü engelleyebilir.
+        document.documentElement.style.display = "none";
+      }
+    </script>
+    <!-- Custom style -->
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+      <!-- Navbar -->
+      <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"
+              ><i class="fas fa-bars"></i
+            ></a>
+          </li>
+        </ul>
+
+        <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+              <i class="fas fa-expand-arrows-alt"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" role="button" id="logoutBtn">
+              <i class="fas fa-sign-out-alt"></i> Çıkış
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.navbar -->
+
+      <!-- Main Sidebar Container -->
+      <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="../dashboard.html" class="brand-link">
+          <img
+            src="../assets/img/bookdash-logo.svg"
+            alt="BookDash Logo"
+            class="brand-image elevation-3"
+            style="opacity: 0.8"
+          />
+          <span class="brand-text font-weight-light">Book<b>Dash</b></span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+          <!-- Sidebar user panel (optional) -->
+          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+                class="img-circle elevation-2"
+                alt="User Image"
+              />
+            </div>
+            <div class="info">
+              <a href="#" class="d-block" id="userFullName">Kullanıcı Adı</a>
+            </div>
+          </div>
+
+          <!-- Sidebar Menu -->
+          <nav class="mt-2">
+            <ul
+              class="nav nav-pills nav-sidebar flex-column"
+              data-widget="treeview"
+              role="menu"
+              data-accordion="false"
+            >
+              <li class="nav-item">
+                <a href="../dashboard.html" class="nav-link navigate-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>Dashboard</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./my-books.html" class="nav-link navigate-link">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>Kitaplarım</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./charts.html" class="nav-link active navigate-link">
+                  <i class="nav-icon fas fa-chart-pie"></i>
+                  <p>Grafikler</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./settings.html" class="nav-link navigate-link">
+                  <i class="nav-icon fas fa-cog"></i>
+                  <p>Ayarlar</p>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+      </aside>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1>Okuma İstatistikleri ve Grafikler</h1>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item">
+                    <a href="../dashboard.html">Ana Sayfa</a>
+                  </li>
+                  <li class="breadcrumb-item active">Grafikler</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="container-fluid">
+            <!-- First row of charts -->
+            <div class="row">
+              <div class="col-md-6">
+                <!-- Monthly Reading Chart -->
+                <div class="card card-info">
+                  <div class="card-header">
+                    <h3 class="card-title">
+                      <i class="fas fa-chart-bar mr-1"></i>
+                      Aylık Okunan Kitap Sayısı
+                    </h3>
+                    <div class="card-tools">
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-card-widget="collapse"
+                      >
+                        <i class="fas fa-minus"></i>
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-card-widget="maximize"
+                      >
+                        <i class="fas fa-expand"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="chart">
+                      <div id="monthlyReadingChart" style="height: 300px"></div>
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+                  <div class="card-footer">
+                    <div class="text-right">
+                      <a href="#" class="text-muted">
+                        <i class="fas fa-info-circle"></i> Bu yıl toplam okunan
+                        kitap sayısı: <span id="totalYearlyBooks">22</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.card -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <!-- Genre Distribution Chart -->
+                <div class="card card-success">
+                  <div class="card-header">
+                    <h3 class="card-title">
+                      <i class="fas fa-chart-pie mr-1"></i>
+                      Kitap Türlerine Göre Dağılım
+                    </h3>
+                    <div class="card-tools">
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-card-widget="collapse"
+                      >
+                        <i class="fas fa-minus"></i>
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-card-widget="maximize"
+                      >
+                        <i class="fas fa-expand"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="chart">
+                      <div
+                        id="genreDistributionChart"
+                        style="height: 300px"
+                      ></div>
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+                  <div class="card-footer">
+                    <div class="text-right">
+                      <a href="#" class="text-muted">
+                        <i class="fas fa-info-circle"></i> En çok okunan tür:
+                        <span id="favoriteGenre">Roman</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.card -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <!-- Second row of charts -->
+            <div class="row">
+              <div class="col-md-6">
+                <!-- Reading Duration Trends Chart -->
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">
+                      <i class="fas fa-chart-line mr-1"></i>
+                      Okuma Süresi Trendleri
+                    </h3>
+                    <div class="card-tools">
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-card-widget="collapse"
+                      >
+                        <i class="fas fa-minus"></i>
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-card-widget="maximize"
+                      >
+                        <i class="fas fa-expand"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="chart">
+                      <div
+                        id="readingDurationChart"
+                        style="height: 300px"
+                      ></div>
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+                  <div class="card-footer">
+                    <div class="text-right">
+                      <a href="#" class="text-muted">
+                        <i class="fas fa-info-circle"></i> Ortalama okuma
+                        süresi: <span id="averageReadingDuration">8 gün</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.card -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <!-- User Type vs Reading Duration Chart -->
+                <div class="card card-warning">
+                  <div class="card-header">
+                    <h3 class="card-title">
+                      <i class="fas fa-users mr-1"></i>
+                      Kullanıcı Tipine Göre Ortalama Okuma
+                    </h3>
+                    <div class="card-tools">
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-card-widget="collapse"
+                      >
+                        <i class="fas fa-minus"></i>
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-card-widget="maximize"
+                      >
+                        <i class="fas fa-expand"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="chart">
+                      <div
+                        id="userTypeReadingChart"
+                        style="height: 300px"
+                      ></div>
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+                  <div class="card-footer">
+                    <div class="text-right">
+                      <a href="#" class="text-muted">
+                        <i class="fas fa-info-circle"></i> En hızlı okuyan grup:
+                        <span id="fastestGroup">Öğretmenler</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.card -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <!-- Third row -->
+            <div class="row">
+              <div class="col-md-12">
+                <!-- Custom chart -->
+                <div class="card card-danger">
+                  <div class="card-header">
+                    <h3 class="card-title">
+                      <i class="fas fa-calendar mr-1"></i>
+                      Son 12 Ay Okuma Karşılaştırması
+                    </h3>
+                    <div class="card-tools">
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-card-widget="collapse"
+                      >
+                        <i class="fas fa-minus"></i>
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-card-widget="maximize"
+                      >
+                        <i class="fas fa-expand"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="chart">
+                      <div id="yearComparisonChart" style="height: 350px"></div>
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+                  <div class="card-footer">
+                    <div class="row">
+                      <div class="col-sm-4 text-center">
+                        <div class="text-muted text-sm">Bu Ay</div>
+                        <h5 id="currentMonthBooks">3</h5>
+                      </div>
+                      <div class="col-sm-4 text-center">
+                        <div class="text-muted text-sm">Geçen Ay</div>
+                        <h5 id="lastMonthBooks">4</h5>
+                      </div>
+                      <div class="col-sm-4 text-center">
+                        <div class="text-muted text-sm">Değişim</div>
+                        <h5 id="changeInMonthly">-25%</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.card -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          </div>
+          <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+      </div>
+      <!-- /.content-wrapper -->
+      <footer class="main-footer">
+        <strong>Copyright &copy; 2023-2025 <a href="#">BookDash</a>.</strong>
+        Tüm hakları saklıdır.
+        <div class="float-right d-none d-sm-inline-block">
+          <b>Sürüm</b> 1.0.0
+        </div>
+      </footer>
+
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+      </aside>
+      <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <!-- ECharts -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
+    <!-- Session Helper -->
+    <script src="../assets/js/session-helper.js"></script>
+    <!-- Base Script -->
+    <script src="../assets/js/base.js"></script>
+    <!-- Custom Script -->
+    <script src="../assets/js/charts.js"></script>
+  </body>
+</html>
