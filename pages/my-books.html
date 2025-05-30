@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BookDash | Kitaplarım</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <!-- DataTables -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.bootstrap4.min.css"
+    />
+    <!-- Theme style -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css"
+    />
+    <!-- SweetAlert2 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css"
+    />
+    <script src="../assets/js/session-helper.js"></script>
+    <script>
+      // Sayfa içeriği yüklenmeden oturumu kontrol et
+      if (!redirectIfNoSession(true)) {
+        // Eğer yönlendirme yapılacaksa, sayfanın geri kalanının yüklenmesini engelle
+        // Bu, kısa süreli sayfa görünümünü engelleyebilir.
+        document.documentElement.style.display = "none";
+      }
+    </script>
+    <!-- Custom style -->
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+      <!-- Navbar -->
+      <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"
+              ><i class="fas fa-bars"></i
+            ></a>
+          </li>
+        </ul>
+
+        <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+              <i class="fas fa-expand-arrows-alt"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" role="button" id="logoutBtn">
+              <i class="fas fa-sign-out-alt"></i> Çıkış
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.navbar -->
+
+      <!-- Main Sidebar Container -->
+      <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="../dashboard.html" class="brand-link">
+          <img
+            src="../assets/img/bookdash-logo.svg"
+            alt="BookDash Logo"
+            class="brand-image elevation-3"
+            style="opacity: 0.8"
+          />
+          <span class="brand-text font-weight-light">Book<b>Dash</b></span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+          <!-- Sidebar user panel (optional) -->
+          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+                class="img-circle elevation-2"
+                alt="User Image"
+              />
+            </div>
+            <div class="info">
+              <a href="#" class="d-block" id="userFullName">Kullanıcı Adı</a>
+            </div>
+          </div>
+
+          <!-- Sidebar Menu -->
+          <nav class="mt-2">
+            <ul
+              class="nav nav-pills nav-sidebar flex-column"
+              data-widget="treeview"
+              role="menu"
+              data-accordion="false"
+            >
+              <li class="nav-item">
+                <a href="../dashboard.html" class="nav-link navigate-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>Dashboard</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./my-books.html" class="nav-link active navigate-link">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>Kitaplarım</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./charts.html" class="nav-link navigate-link">
+                  <i class="nav-icon fas fa-chart-pie"></i>
+                  <p>Grafikler</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./settings.html" class="nav-link navigate-link">
+                  <i class="nav-icon fas fa-cog"></i>
+                  <p>Ayarlar</p>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+      </aside>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1>Kitaplarım</h1>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item">
+                    <a href="../dashboard.html">Ana Sayfa</a>
+                  </li>
+                  <li class="breadcrumb-item active">Kitaplarım</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Tüm Kitaplarım</h3>
+                    <div class="card-tools">
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-toggle="modal"
+                        data-target="#addBookModal"
+                      >
+                        <i class="fas fa-plus"></i> Yeni Kitap Ekle
+                      </button>
+                    </div>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <!-- Etiket Filtreleme Alanı -->
+                    <div class="mb-3 p-3 bg-light rounded">
+                      <h5><i class="fas fa-tags"></i> Etiket Filtreleri</h5>
+                      <div class="tag-filter-controls d-flex flex-wrap">
+                        <div id="tagFilters" class="d-flex flex-wrap"></div>
+                      </div>
+                    </div>
+
+                    <table
+                      id="booksTable"
+                      class="table table-bordered table-striped"
+                    >
+                      <thead>
+                        <tr>
+                          <th>Kitap Adı</th>
+                          <th>Yazar</th>
+                          <th>Başlama Tarihi</th>
+                          <th>Bitiş Tarihi</th>
+                          <th>Tür</th>
+                          <th>Okuma Süresi (gün)</th>
+                          <th>Puan</th>
+                          <th>Etiketler</th>
+                          <th>Notlar</th>
+                          <th>İşlemler</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- Veriler JavaScript ile doldurulacak -->
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          </div>
+          <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+      </div>
+      <!-- /.content-wrapper -->
+      <footer class="main-footer">
+        <strong>Copyright &copy; 2023-2025 <a href="#">BookDash</a>.</strong>
+        Tüm hakları saklıdır.
+        <div class="float-right d-none d-sm-inline-block">
+          <b>Sürüm</b> 1.0.0
+        </div>
+      </footer>
+
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+      </aside>
+      <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- Add Book Modal -->
+    <div class="modal fade" id="addBookModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Yeni Kitap Ekle</h4>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="addBookForm">
+              <div class="form-group">
+                <label for="bookTitle">Kitap Adı</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="bookTitle"
+                  placeholder="Kitap adını girin"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="bookAuthor">Yazar</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="bookAuthor"
+                  placeholder="Yazarın adını girin"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="startDate">Başlama Tarihi</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="startDate"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="endDate">Bitiş Tarihi</label>
+                <input type="date" class="form-control" id="endDate" required />
+              </div>
+              <div class="form-group">
+                <label for="bookGenre">Tür</label>
+                <select class="form-control" id="bookGenre" required>
+                  <option value="">Seçiniz</option>
+                  <option value="Roman">Roman</option>
+                  <option value="Bilimkurgu">Bilimkurgu</option>
+                  <option value="Klasik">Klasik</option>
+                  <option value="Distopya">Distopya</option>
+                  <option value="Fantastik">Fantastik</option>
+                  <option value="Tarih">Tarih</option>
+                  <option value="Biyografi">Biyografi</option>
+                  <option value="Kişisel Gelişim">Kişisel Gelişim</option>
+                  <option value="Diğer">Diğer</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="bookRating">Puan</label>
+                <div class="rating-input">
+                  <select class="form-control" id="bookRating">
+                    <option value="0">Puanlanmamış</option>
+                    <option value="1">1 - Çok Kötü</option>
+                    <option value="2">2 - Kötü</option>
+                    <option value="3">3 - Orta</option>
+                    <option value="4">4 - İyi</option>
+                    <option value="5">5 - Çok İyi</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="bookTags">Etiketler</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="bookTags"
+                  placeholder="Etiketleri virgülle ayırarak girin (ör: Klasik, Distopya, Favoriler)"
+                />
+                <small class="form-text text-muted"
+                  >Etiketleri virgülle ayırarak girişini yapın.</small
+                >
+              </div>
+              <div class="form-group">
+                <label for="notes">Notlar</label>
+                <textarea
+                  class="form-control"
+                  id="notes"
+                  rows="3"
+                  placeholder="Kitap hakkında notlar ekleyebilirsiniz"
+                ></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              Kapat
+            </button>
+            <button type="button" class="btn btn-primary" id="saveBookBtn">
+              Kaydet
+            </button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <!-- Edit Book Modal -->
+    <div class="modal fade" id="editBookModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Kitap Düzenle</h4>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="editBookForm">
+              <input type="hidden" id="editBookId" />
+              <div class="form-group">
+                <label for="editBookTitle">Kitap Adı</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editBookTitle"
+                  placeholder="Kitap adını girin"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="editBookAuthor">Yazar</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editBookAuthor"
+                  placeholder="Yazarın adını girin"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="editStartDate">Başlama Tarihi</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="editStartDate"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="editEndDate">Bitiş Tarihi</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="editEndDate"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="editBookGenre">Tür</label>
+                <select class="form-control" id="editBookGenre" required>
+                  <option value="">Seçiniz</option>
+                  <option value="Roman">Roman</option>
+                  <option value="Bilimkurgu">Bilimkurgu</option>
+                  <option value="Klasik">Klasik</option>
+                  <option value="Distopya">Distopya</option>
+                  <option value="Fantastik">Fantastik</option>
+                  <option value="Tarih">Tarih</option>
+                  <option value="Biyografi">Biyografi</option>
+                  <option value="Kişisel Gelişim">Kişisel Gelişim</option>
+                  <option value="Diğer">Diğer</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="editBookRating">Puan</label>
+                <div class="rating-input">
+                  <select class="form-control" id="editBookRating">
+                    <option value="0">Puanlanmamış</option>
+                    <option value="1">1 - Çok Kötü</option>
+                    <option value="2">2 - Kötü</option>
+                    <option value="3">3 - Orta</option>
+                    <option value="4">4 - İyi</option>
+                    <option value="5">5 - Çok İyi</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="editBookTags">Etiketler</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editBookTags"
+                  placeholder="Etiketleri virgülle ayırarak girin (ör: Klasik, Distopya, Favoriler)"
+                />
+                <small class="form-text text-muted"
+                  >Etiketleri virgülle ayırarak girişini yapın.</small
+                >
+              </div>
+              <div class="form-group">
+                <label for="editNotes">Notlar</label>
+                <textarea
+                  class="form-control"
+                  id="editNotes"
+                  rows="3"
+                  placeholder="Kitap hakkında notlar ekleyebilirsiniz"
+                ></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              Kapat
+            </button>
+            <button type="button" class="btn btn-primary" id="updateBookBtn">
+              Güncelle
+            </button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <!-- View Book Details Modal -->
+    <div class="modal fade" id="viewBookModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Kitap Detayları</h4>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="card">
+              <div class="card-body">
+                <h5 id="viewBookTitle" class="card-title mb-3"></h5>
+                <p class="text-muted">
+                  Yazar: <span id="viewBookAuthor"></span>
+                </p>
+                <p class="text-muted">
+                  Başlama Tarihi: <span id="viewStartDate"></span>
+                </p>
+                <p class="text-muted">
+                  Bitiş Tarihi: <span id="viewEndDate"></span>
+                </p>
+                <p class="text-muted">
+                  Okuma Süresi: <span id="viewReadingDays"></span> gün
+                </p>
+                <p class="text-muted">Tür: <span id="viewBookGenre"></span></p>
+                <div class="mb-3">
+                  <h6>Puan:</h6>
+                  <div id="viewRating"></div>
+                </div>
+                <div class="mb-3">
+                  <h6>Etiketler:</h6>
+                  <div id="viewTags"></div>
+                </div>
+                <div class="mt-3">
+                  <h6>Notlar:</h6>
+                  <p id="viewNotes"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              Kapat
+            </button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.5/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.5/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.colVis.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
+    <!-- Session Helper -->
+    <script src="../assets/js/session-helper.js"></script>
+    <!-- Base Script -->
+    <script src="../assets/js/base.js"></script>
+    <!-- Custom Script -->
+    <script src="../assets/js/my-books.js"></script>
+  </body>
+</html>
